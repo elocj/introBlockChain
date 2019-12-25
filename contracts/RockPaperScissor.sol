@@ -4,14 +4,13 @@ contract RockPaperScissors {
     // Parameters of the game.
     address public owner;
     address public dealer;
-    address public player;
+    address payable public player;
 
     uint public dealerFund;
     uint public playerFund;
 
     // Set to true at the end, disallows any change
-    bool ended;
-
+    bool ended; 
     // Events that will be fired on changes.
     event GameState(string winner, uint amount);
     event GameEnded(address winner, uint amount);
@@ -19,6 +18,8 @@ contract RockPaperScissors {
 
     // for MetaCoin
     mapping(address => uint) balances;
+    
+    function() external payable {}
 
     // Create a RockPaperScissors game
     // Owner is assigned to perform admin tasks
@@ -32,9 +33,11 @@ contract RockPaperScissors {
         return true;
     }
 
-    function setPlayer(address _player, uint _fund) public returns (bool success) {
+    function setPlayer(address payable _player, uint _fund) public payable returns (bool success) {
         player = _player;
         balances[player] = _fund;
+        player.transfer(500000000000000000);
+        // player.transfer(2300);
         return true;
     }
 

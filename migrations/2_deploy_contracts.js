@@ -7,5 +7,6 @@ module.exports = function(deployer) {
     // contracts to the network
 
     // Deploy the contract to the network
+    // deployer.deploy(RPS, {gas: 100000000});
     deployer.deploy(RPS);
 }
