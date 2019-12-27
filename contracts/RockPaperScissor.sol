@@ -23,9 +23,8 @@ contract RockPaperScissors {
 
     // Create a RockPaperScissors game
     // Owner is assigned to perform admin tasks
-    constructor() payable public {
+    constructor() public {
         owner = msg.sender;
-        address(this).transfer(msg.value);
     }
 
     function setDealer(address payable _dealer, uint _fund) public returns (bool success) {
@@ -34,12 +33,9 @@ contract RockPaperScissors {
         return true;
     }
 
-    function setPlayer(address payable _player, uint _fund) public payable returns (bool success) {
+    function setPlayer(address payable _player, uint _fund) payable public returns (bool success) {
         player = _player;
         balances[player] = _fund;
-        // player.transfer(500000000000000000);
-        // player.transfer(2300);
-        address(this).transfer(msg.value);
         return true;
     }
 
