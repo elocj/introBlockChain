@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReadString from "./ReadString";
 import logo from './logo.svg';
 import './App.css';
 
@@ -27,7 +28,14 @@ class App extends Component {
 
   render() {
     if (this.state.loading) return "Loading Drizzle...";
-    return <div className="App">Drizzle is ready</div>;
+    return (
+      <div className="App">
+        <ReadString
+          drizzle={this.props.drizzle}
+          drizzleState={this.state.drizzleState}
+        />
+      </div>
+    );
   }
 }
 

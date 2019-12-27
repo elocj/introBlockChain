@@ -3,7 +3,7 @@ pragma solidity ^0.5.12;
 contract RockPaperScissors {
     // Parameters of the game.
     address public owner;
-    address public dealer;
+    address payable public dealer;
     address payable public player;
 
     uint public dealerFund;
@@ -23,11 +23,12 @@ contract RockPaperScissors {
 
     // Create a RockPaperScissors game
     // Owner is assigned to perform admin tasks
-    constructor() public {
+    constructor() payable public {
         owner = msg.sender;
+        address(this).transfer(msg.value);
     }
 
-    function setDealer(address _dealer, uint _fund) public returns (bool success) {
+    function setDealer(address payable _dealer, uint _fund) public returns (bool success) {
         dealer = _dealer;
         balances[dealer] = _fund;
         return true;
@@ -36,8 +37,9 @@ contract RockPaperScissors {
     function setPlayer(address payable _player, uint _fund) public payable returns (bool success) {
         player = _player;
         balances[player] = _fund;
-        player.transfer(500000000000000000);
+        // player.transfer(500000000000000000);
         // player.transfer(2300);
+        address(this).transfer(msg.value);
         return true;
     }
 
