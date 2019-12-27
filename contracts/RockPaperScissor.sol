@@ -27,7 +27,7 @@ contract RockPaperScissors {
         owner = msg.sender;
     }
 
-    function setDealer(address payable _dealer, uint _fund) public returns (bool success) {
+    function setDealer(address payable _dealer, uint _fund) payable public returns (bool success) {
         dealer = _dealer;
         balances[dealer] = _fund;
         return true;

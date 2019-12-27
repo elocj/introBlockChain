@@ -15,7 +15,7 @@ class SetString extends React.Component {
     const contract = drizzle.contracts.RockPaperScissors;
 
     // let drizzle know we want to call the `set` method with `value`
-    const stackId = contract.methods["setPlayer"].cacheSend(drizzleState.accounts[0], 1000, {
+    const stackId = contract.methods["setPlayer"].cacheSend('0x07481141BD75c847bbeAab0F305638945FEf08b4', 1000, {
       from: drizzleState.accounts[0],
       value: '2000000000000000000'
     });
