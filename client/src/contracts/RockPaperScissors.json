@@ -9484,10 +9484,83 @@
       "links": {},
       "address": "0x2f4713C7e03d0C40A4f4668eD766105E9B9b38d8",
       "transactionHash": "0xbf8e01e92c6daf9738deda054e8dea79a22e6d7dde40f672b7ea0b81d9cbd85f"
+    },
+    "1577690537669": {
+      "events": {
+        "0xd4ba6fec82d9b0e8ffe50b9fed9e4be3b25c984ce1e0e016405a5528726e8a2c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "winner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "GameEnded",
+          "type": "event",
+          "signature": "0xd4ba6fec82d9b0e8ffe50b9fed9e4be3b25c984ce1e0e016405a5528726e8a2c"
+        },
+        "0x8636accafe6e543252248bfbd3f92b39b3f233272c8670fda09bb18edb80e2f5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "winner",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "GameState",
+          "type": "event",
+          "signature": "0x8636accafe6e543252248bfbd3f92b39b3f233272c8670fda09bb18edb80e2f5"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event",
+          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        }
+      },
+      "links": {},
+      "address": "0x42c54afECF181e9aE6A7Fc2C733bA037169aD7ef",
+      "transactionHash": "0xaed10380027808e917cf9a9b199641de8ef2ee9e6675ac63828e07c019468ffa"
     }
   },
   "schemaVersion": "3.0.20",
-  "updatedAt": "2019-12-27T04:13:02.729Z",
+  "updatedAt": "2019-12-30T07:39:36.249Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

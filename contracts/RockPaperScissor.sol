@@ -10,11 +10,11 @@ contract RockPaperScissors {
     uint public playerFund;
 
     // Set to true at the end, disallows any change
-    bool ended; 
+    bool ended;
     // Events that will be fired on changes.
     event GameState(string winner, uint amount);
     event GameEnded(address winner, uint amount);
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);    
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
     // for MetaCoin
     mapping(address => uint) balances;
@@ -27,13 +27,13 @@ contract RockPaperScissors {
         owner = msg.sender;
     }
 
-    function setDealer(address payable _dealer, uint _fund) payable public returns (bool success) {
+    function setDealer(address payable _dealer, uint _fund) public payable returns (bool success) {
         dealer = _dealer;
         balances[dealer] = _fund;
         return true;
     }
 
-    function setPlayer(address payable _player, uint _fund) payable public returns (bool success) {
+    function setPlayer(address payable _player, uint _fund) public payable returns (bool success) {
         player = _player;
         balances[player] = _fund;
         return true;
@@ -70,40 +70,34 @@ contract RockPaperScissors {
                 isPlayerWinner = true;
             } else if (playerAction == 1) {
                 results = 'Dealer won!';
-            }            
+            }
         }
 
         emit GameState(results, bettingAmount);
 
         // send betting amount
         if(isPlayerWinner) {
-            if(sendCoin(dealer, player, bettingAmount)) {
-                // continue game
-            } else {
+            if(!sendCoin(dealer, player, bettingAmount)) {
                 // end of game
                 ended = true;
                 results = 'Dealer got bankrupted!';
                 emit GameEnded(player, getBalanceInEth(player));
-            } 
         } else {
-            if (sendCoin(player, dealer, bettingAmount)) {
-                // continue game
-            } else {
+            if (!sendCoin(player, dealer, bettingAmount)) {
                 // end of game
                 ended = true;
                 results = 'Player got bankrupted!';
-                emit GameEnded(dealer, getBalanceInEth(dealer)); 
-            }
+                emit GameEnded(dealer, getBalanceInEth(dealer));
         }
-        return results; 
+        return results;
     }
 
-    function sendCoin(address sender, address receiver, uint amount) public returns(bool sufficient) { 
+    function sendCoin(address sender, address receiver, uint amount) public returns(bool sufficient) {
         if (balances[sender] < amount) return false;
         balances[sender] -= amount;
         balances[receiver] += amount;
         emit Transfer(sender, receiver, amount);
-        return true; 
+        return true;
     }
 
     function getBalanceInEth(address addr) public view returns(uint){
