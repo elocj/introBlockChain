@@ -18,7 +18,6 @@ contract RockPaperScissors {
 
     // for MetaCoin
     mapping(address => uint) balances;
-    
     function() external payable {}
 
     // Create a RockPaperScissors game
@@ -95,7 +94,7 @@ contract RockPaperScissors {
     }
 
     function sendCoin(address sender, address receiver, uint amount) public returns(bool sufficient) {
-        if (balances[sender] < amount){ return false;}
+        if (balances[sender] < amount) return false;
         balances[sender] -= amount;
         balances[receiver] += amount;
         emit Transfer(sender, receiver, amount);
