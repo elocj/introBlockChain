@@ -82,18 +82,20 @@ contract RockPaperScissors {
                 ended = true;
                 results = 'Dealer got bankrupted!';
                 emit GameEnded(player, getBalanceInEth(player));
-        } else {
-            if (!sendCoin(player, dealer, bettingAmount)) {
-                // end of game
-                ended = true;
-                results = 'Player got bankrupted!';
-                emit GameEnded(dealer, getBalanceInEth(dealer));
+            } else {
+                if (!sendCoin(player, dealer, bettingAmount)) {
+                    // end of game
+                    ended = true;
+                    results = 'Player got bankrupted!';
+                    emit GameEnded(dealer, getBalanceInEth(dealer));
+                }
+            }
         }
         return results;
     }
 
     function sendCoin(address sender, address receiver, uint amount) public returns(bool sufficient) {
-        if (balances[sender] < amount) return false;
+        if (balances[sender] < amount){ return false;}
         balances[sender] -= amount;
         balances[receiver] += amount;
         emit Transfer(sender, receiver, amount);
